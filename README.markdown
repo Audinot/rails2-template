@@ -38,7 +38,8 @@ will have a very Linux-ish flavour. These commands should work fine in a
 Mac OSX terminal. You might want to check the Windows equivalent first
 before running these commands in the Windows command prompt!
 
-1. Before starting your app, set up your databases.
+#### Databases
+Before starting your app, set up your databases.
 
 ```
 sudo su postgres -c psql
@@ -48,14 +49,14 @@ create database appname_production;
 create database appname_test;
 ```
 
-2. Let's make a new role (user) for this database.
+Let's make a new role (user) for this database.
 
 ```
 create role appuser with createdb login password 'password';
 ```
 Make sure you use your appname and put your password between the quotes!
 
-3. Give the new role access to the newly created databases.
+Give the new role access to the newly created databases.
 
 ```
 grant all privileges on database appname_development to appuser;
@@ -63,9 +64,10 @@ grant all privileges on database appname_production to appuser;
 grant all privileges on database appname_test to appuser;
 ```
 
-4. Log out of postgres with `\q`.
+Log out of postgres with `\q`.
 
-5. Start your new app! You will need a text editor. I'm using vim, but you
+#### App setup
+Start your new app! You will need a text editor. I'm using vim, but you
 can use nano, gedit, textmate, notepad, etc.
 
 ```
@@ -75,12 +77,14 @@ cd appname/config
 vim database.yml
 ```
 
-6. In your database.yml file, add the username and password you created
+In your database.yml file, add the username and password you created
 earlier to the information. (There should be a blank space waiting for
 the password, and the username might already be filled in for you. Make
 sure it's correct!)
 
-7. You'll want a Ruby gem called 'Bundler' now. Heroku absolutely requires
+#### Gemfile and Rakefile
+
+You'll want a Ruby gem called 'Bundler' now. Heroku absolutely requires
 this... Plus it makes your life easier. Install it first:
 
 ```
@@ -112,12 +116,12 @@ ruby "1.8.7"
 ```
 Save this Gemfile and install all the gems listed with 'bundle install'.
 
-8. Open the Rakefile in your favourite editor and look at the requirements.
+Open the Rakefile in your favourite editor and look at the requirements.
 If you're using the same Ruby/Rails version as I am, you'll probably see 
 this line: `require rake/rdoctask`. Change it to `require 'rdoc/task' and 
 save it; Heroku can't use the old deprecated rdoctask module.
 
-9. Now that your Rakefile is up to date, you can use `rake` commands to 
+Now that your Rakefile is up to date, you can use `rake` commands to 
 start up your database.
 ```
 rake db:migrate
@@ -131,7 +135,9 @@ sudo vim /etc/postgresql/9.1/main/pg_hba.conf
 Change anything that says `peer` to `md5` instead, then run the `rake` 
 commands again, and everything will be fine.
 
-10. You're going to make a Procfile, which is a file Heroku uses to 
+#### Heroku's Procfile
+
+You're going to make a Procfile, which is a file Heroku uses to 
 determine what services to start whenever someone makes an HTTP request 
 (looks at your app). In this case, all we need Heroku to do is start the 
 Thin server we installed earlier. I use `vim Procfile` and just add this:
@@ -139,7 +145,8 @@ Thin server we installed earlier. I use `vim Procfile` and just add this:
 web: bundle exec thin start -p $PORT -e production
 ```
 
-11. Create a new git repository to store your app. If you're a git master, 
+#### Starting Git
+Create a new Github repository to store your app. If you're a git master, 
 you can skip the instructions. Heroku uses git to get your app running 
 online, so if you've never used git, you'll want to follow this quick
 tutorial here.
@@ -179,7 +186,9 @@ git remote add origin https;//github.com/Username/repo-name.git
 git push -u origin master
 ```
 
-12. Last stretch! Deploy your new project to Heroku. This step will make a 
+#### Deploy
+
+Last stretch! Deploy your new project to Heroku. This step will make a 
 new Heroku repo, 'push' your code online, and get Heroku's database synced.
 ```
 heroku create
