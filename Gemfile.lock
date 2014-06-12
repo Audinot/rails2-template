@@ -8,12 +8,15 @@ GEM
       rack (~> 1.1.0)
     activerecord (2.3.14)
       activesupport (= 2.3.14)
+    activerecord-postgresql-adapter (0.0.1)
+      pg
     activeresource (2.3.14)
       activesupport (= 2.3.14)
     activesupport (2.3.14)
     daemons (1.1.9)
     eventmachine (1.0.3)
     json (1.8.1)
+    pg (0.17.1)
     rack (1.1.6)
     rails (2.3.14)
       actionmailer (= 2.3.14)
@@ -36,6 +39,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-postgresql-adapter
   rails (= 2.3.14)
   rdoc
   rdoc-data
