@@ -1,0 +1,11 @@
+This is a sample app template for older versions of Ruby and Rails. It
+includes:
+
+    Ruby 1.8.7
+    Rails 2.3.14
+    Thin server
+    PostgreSQL
+    .gitignore file
+
+This template is meant to be deployed on Heroku (hence postgres) and works
+on "Chrubuntu" 12.04.
