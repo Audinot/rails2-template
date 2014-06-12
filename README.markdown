@@ -118,7 +118,7 @@ Save this Gemfile and install all the gems listed with 'bundle install'.
 
 Open the Rakefile in your favourite editor and look at the requirements.
 If you're using the same Ruby/Rails version as I am, you'll probably see 
-this line: `require rake/rdoctask`. Change it to `require 'rdoc/task' and 
+this line: `require rake/rdoctask`. Change it to `require 'rdoc/task` and 
 save it; Heroku can't use the old deprecated rdoctask module.
 
 Now that your Rakefile is up to date, you can use `rake` commands to 
@@ -159,10 +159,6 @@ Git, and github, will store EVERY file in your app online, even the files
 you don't need hosted! To keep your private files, well, *private,* create 
 a new `.gitignore` file. Don't forget the dot! I got mine from [Github's 
 own repo,](https://github.com/github/gitignore/blob/master/Rails.gitignore 
-"Github's Rails .gitignore").
-
- I got mine from [Github's 
-own repo,](https://github.com/github/gitignore/blob/master/Rails.gitignore 
 "Github's Rails .gitignore") and copied it into my app's root folder. I 
 also added `/rdoc/` at the beginning of the file.
 
@@ -199,7 +195,7 @@ heroku run db:setup
 Done! To see your sweet masterpiece running online, just use `heroku open`.
 
 NOTE: Heroku keeps asking you to specify an app? This can happen if you 
-have multiple Heroku repos. Use `heroku open --app app-name-12345 (the 
+have multiple Heroku repos. Use `heroku open --app app-name-12345` (the 
 name of the repo you got after `heroku create`).
 
 Thank you!
