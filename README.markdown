@@ -1,7 +1,7 @@
 README
 ======
 
-### Introduction
+## Introduction
 
 This is a sample app template for older versions of Ruby and Rails. It
 includes:
@@ -15,25 +15,33 @@ includes:
 This template is meant to be deployed on Heroku (hence postgres) and works
 on "Chrubuntu" 12.04.
 
-NOTE: From what I understand, the "About your application's environment"
-tab on the default ("Welcome aboard") page does NOT work on Heroku. This
-produces a routing error because the GET path is deprecated on Heroku.
-Everything else works just fine; in fact you can check the environment
-tab from your own computer.
+NOTE: The "About your application's environment" tab on the default 
+("Welcome aboard") page does NOT work on Heroku. This produces a routing error 
+because the default Welcome page isn't designed for production.  Heroku can't 
+find the `http://app-name-1234.herokuapp.com/rails/info/properties` page. 
 
+You don't want to list all your private database information on a public 
+repo, so this isn't a bug. But if you want to confirm that everything's 
+working, try this in your project's root folder:
+
+```
 bundle exec thin start
+```
 
-Thin server should tell you it's listening on 0.0.0.0:3000, so you can
-check it out in your browser.
+Thin server should tell you it's listening on https://0.0.0.0:3000, so you can
+check it out in your browser locally.
 
 ### Download
 
+```
 git clone https://github.com/Audinot/rails2-template.git
+```
 
-### Guide
+TUTORIAL
+--------
 
-Set it up yourself with this guide! (Using Rails 2.3.14 and Ruby 1.8.7)
-I'm using "Chrubuntu" (Linux Ubuntu on a Chromebook) 12.04, so this guide
+Build it yourself with this guide! (Using Rails 2.3.14 and Ruby 1.8.7)
+I'm using "ChrUbuntu" (Linux Ubuntu on a Chromebook) 12.04, so this guide
 will have a very Linux-ish flavour. These commands should work fine in a
 Mac OSX terminal. You might want to check the Windows equivalent first
 before running these commands in the Windows command prompt!
