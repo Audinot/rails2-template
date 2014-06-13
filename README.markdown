@@ -36,17 +36,20 @@ check it out in your browser locally.
 ```
 git clone https://github.com/Audinot/rails2-template.git
 ```
+You can then set up the databases using `psql` and `rake` commands (see the 
+database section in the tutorial).
 
 TUTORIAL
 --------
 
-Build it yourself with this guide! (Using Rails 2.3.14 and Ruby 1.8.7)
+Make it yourself with this guide! (Using Rails 2.3.14 and Ruby 1.8.7)
 I'm using "ChrUbuntu" (Linux Ubuntu on a Chromebook) 12.04, so this guide
 will have a very Linux-ish flavour. These commands should work fine in a
 Mac OSX terminal. You might want to check the Windows equivalent first
 before running these commands in the Windows command prompt!
 
 #### Databases
+
 Before starting your app, set up your databases.
 
 ```
@@ -62,7 +65,8 @@ Let's make a new role (user) for this database.
 ```
 create role appuser with createdb login password 'password';
 ```
-Make sure you use your appname and put your password between the quotes!
+Make sure you choose a username (appuser)  and put your password between 
+the quotes!
 
 Give the new role access to the newly created databases.
 
@@ -75,6 +79,7 @@ grant all privileges on database appname_test to appuser;
 Log out of postgres with `\q`.
 
 #### App setup
+
 Start your new app! You will need a text editor. I'm using vim, but you
 can use nano, gedit, textmate, notepad, etc.
 
@@ -122,11 +127,11 @@ gem "activerecord-postgresql-adapter"
 
 ruby "1.8.7"
 ```
-Save this Gemfile and install all the gems listed with 'bundle install'.
+Save this Gemfile and install all the gems listed with `bundle install`.
 
 Open the Rakefile in your favourite editor and look at the requirements.
 If you're using the same Ruby/Rails version as I am, you'll probably see 
-this line: `require rake/rdoctask`. Change it to `require 'rdoc/task` and 
+this line: `require 'rake/rdoctask'`. Change it to `require 'rdoc/task'` and 
 save it; Heroku can't use the old deprecated rdoctask module.
 
 Now that your Rakefile is up to date, you can use `rake` commands to 
@@ -136,11 +141,11 @@ rake db:migrate
 rake db:setup
 ```
 NOTE: if you get a peer authentification error, your postgres config file 
-is a bit off. You can fix it by switching to look for an md5 password.
+is a bit off. You can fix it by looking for an md5 password instead:
 ```
 sudo vim /etc/postgresql/9.1/main/pg_hba.conf
 ```
-Change anything that says `peer` to `md5` instead, then run the `rake` 
+Change anything that says `peer` to `md5`, then run the `rake` 
 commands again, and everything will be fine.
 
 #### Heroku's Procfile
@@ -160,13 +165,13 @@ online, so if you've never used git, you'll want to follow this quick
 tutorial here.
 
 First, sign up on [Github](https://github.com) for a free account. Then 
-create a new repository. It's a good idea to name this 'repo' after your 
-Rails app so you can find it easily.
+create a new repository, or 'repo.. It's a good idea to name this repo after 
+your Rails app so you can find it easily.
 
 Git, and github, will store EVERY file in your app online, even the files 
 you don't need hosted! To keep your private files, well, *private,* create 
 a new `.gitignore` file. Don't forget the dot! I got mine from [Github's 
-own repo,](https://github.com/github/gitignore/blob/master/Rails.gitignore 
+official repo,](https://github.com/github/gitignore/blob/master/Rails.gitignore 
 "Github's Rails .gitignore") and copied it into my app's root folder. I 
 also added `/rdoc/` at the beginning of the file.
 
@@ -189,6 +194,8 @@ Now we can get the code online in the git repo created earlier.
 git remote add origin https;//github.com/Username/repo-name.git
 git push -u origin master
 ```
+If you want to learn more about Git (which is never a bad idea), I suggest 
+[trying a tutorial](https://try.github.io "Try Git on Codeschool") or two.
 
 #### Deploy
 
